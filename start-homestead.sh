@@ -25,6 +25,9 @@ You can now access the laravel-homestead site at http://127.0.0.1:8000
 and you can find the files for it located under:
 $REALDIR/html/$SITE
 
+NOTE: If the project is new, it will take a few seconds to setup!
+      You can track it with \"docker logs laravel-dev\"
+
 If you need access to the running container shell, run:
     docker exec -it laravel-dev bash
 
