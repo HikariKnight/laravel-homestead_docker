@@ -34,6 +34,8 @@ sudo mv composer.phar /usr/local/bin/composer
 
 RUN composer global require "laravel/installer" && \
 echo "export PATH=\"~/.composer/vendor/bin:\$PATH\"" >> ~/.bashrc && \
+echo "umask ug=rw,o=r" >> ~/.bashrc && \
+umask ug=rw,o=r && \
 mkdir /www && \
 cd /www && \
 composer create-project laravel/laravel ./site

@@ -4,6 +4,9 @@ set -e
 # Export the PATH we would otherwise have from .bashrc
 export PATH="~/.composer/vendor/bin:$PATH"
 
+# Set our default file permissions so host can edit files still
+umask ug=rw,o=r
+
 # Set a default value for site
 site="site"
 
