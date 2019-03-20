@@ -19,7 +19,7 @@ printf "Starting the non persistent docker container (everything persistent is i
 Docker container ID: "
 
 # Run the docker container
-docker run -dit --rm --name laravel-dev -p 8000-8010:8000-8010 -v "$REALDIR/html":/www --user 0:$DGID laravel-homestead "$SITE"
+docker run -dit --rm --name laravel-dev -p 8000-8010:8000-8010 -p 3306:3306 -v "$REALDIR/html":/www --user 0:$DGID laravel-homestead "$SITE"
 printf "
 You can now access the laravel-homestead site at http://127.0.0.1:8000
 and you can find the files for it located under:

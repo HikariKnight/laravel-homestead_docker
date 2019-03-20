@@ -17,6 +17,9 @@ if [ $# -ge 1 ]
         site="$1"
 fi
 
+# Start mysql/mariadb
+/etc/init.d/mysql restart
+
 # Check if the site exists and take the apropriate action
 if [ "$(ls -A /www/$site)" ]; then
 

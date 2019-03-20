@@ -10,6 +10,16 @@ https://docs.docker.com/install/
 
 For Ubuntu 18.10 use the Test branch if Stable does not exist yet.
 
+**Default mariadb info**<br>
+To connect from inside the container<br>
+username: root<br>
+password:<br>
+
+To connect from the outside of the container<br>
+username: root<br>
+password: homestead
+
+
 ## Installation through https://hub.docker.com
 ```bash
 mkdir -p devel/laravel/html
