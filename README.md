@@ -10,6 +10,15 @@ https://docs.docker.com/install/
 
 For Ubuntu 18.10 use the Test branch if Stable does not exist yet.
 
+## Installation through https://hub.docker.com
+```bash
+mkdir -p devel/laravel/html
+cd devel/laravel
+docker run -dit --rm --name laravel-dev -p 8000-8010:8000-8010 -v "$PWD/html":/www --user 0:$(sed -nr "s/^docker:x:([0-9]+):.*/\1/p" /etc/group) hikariknight/laravel-homestead "projectname" 
+```
+
+## Installation using git
+
 **Now just download this repository<br>**
 ```bash
 git clone https://github.com/HikariKnight/laravel-homestead_docker.git
@@ -18,7 +27,7 @@ git clone https://github.com/HikariKnight/laravel-homestead_docker.git
 
 **Build the laravel-homestead image and start it**<br>
 
-```
+```bash
 cd laravel-homestead_docker
 ./build-image.sh
 ./start-homestead.sh
