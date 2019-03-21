@@ -3,8 +3,9 @@ FROM debian:latest
 EXPOSE 8000-8010/tcp
 EXPOSE 3306/tcp
 
-RUN apt-get update && \
-DEBIAN_FRONTEND=noninteractive apt-get install -y \
+RUN export DEBIAN_FRONTEND=noninteractive && \
+apt-get update && \
+apt-get install -y \
 apt-transport-https \
 ca-certificates \
 wget \
@@ -16,12 +17,18 @@ bash-completion \
 curl \
 sudo \
 git \
-lsb-release && \
+lsb-release \
+software-properties-common \
+dirmngr
+
+RUN export DEBIAN_FRONTEND=noninteractive && \
 wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add - && \
 echo "deb https://packages.sury.org/php/ stretch main" | tee /etc/apt/sources.list.d/php.list && \
-cd /tmp && \
-wget https://dev.mysql.com/get/mysql-apt-config_0.8.10-1_all.deb && \
-sudo dpkg -i mysql-apt-config* && \
+/bin/bash -c "debconf-set-selections <<< 'mariadb-server-10.3 mysql-server/root_password password ""'" && \
+/bin/bash -c "debconf-set-selections <<< 'mariadb-server-10.3 mysql-server/root_password_again password ""'" && \
+sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8 && \
+sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 8C718D3B5072E1F5 && \
+sudo add-apt-repository 'deb [arch=amd64,i386,ppc64el] http://mirror.homelab.no/mariadb/repo/10.3/debian stretch main' && \
 apt-get update && apt-get install -y \
 php7.3-cli \
 php7.3-common \
@@ -32,8 +39,8 @@ php7.3-xml \
 php7.3-bcmath \
 php7.3-json \
 php7.3-zip \
-mysql-server && \
-sed -i 's/127.0.0.1/0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf && \
+mariadb-server && \
+printf '[mysqld]\nport = 3306\nbind-address = 0.0.0.0\n' >> /etc/mysql/mariadb.conf.d/50-server.cnf && \
 /etc/init.d/mysql restart && \
 mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'homestead'@'%' IDENTIFIED BY 'secret' WITH GRANT OPTION;"
 
