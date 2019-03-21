@@ -17,7 +17,7 @@ password:<br>
 
 To connect from the outside of the container<br>
 username: homestead<br>
-password: homestead
+password: secret
 
 
 ## Installation through https://hub.docker.com

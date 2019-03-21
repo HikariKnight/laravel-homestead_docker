@@ -35,7 +35,7 @@ php7.3-zip \
 mysql-server && \
 sed -i 's/127.0.0.1/0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf && \
 /etc/init.d/mysql restart && \
-mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'homestead'@'%' IDENTIFIED BY 'homestead' WITH GRANT OPTION;"
+mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'homestead'@'%' IDENTIFIED BY 'secret' WITH GRANT OPTION;"
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
 php composer-setup.php && \
