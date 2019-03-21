@@ -16,7 +16,7 @@ username: root<br>
 password:<br>
 
 To connect from the outside of the container<br>
-username: root<br>
+username: homestead<br>
 password: homestead
 
 
