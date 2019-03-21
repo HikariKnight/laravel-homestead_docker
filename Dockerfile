@@ -39,8 +39,9 @@ php7.3-xml \
 php7.3-bcmath \
 php7.3-json \
 php7.3-zip \
-mariadb-server && \
-printf '[mysqld]\nport = 3306\nbind-address = 0.0.0.0\n' >> /etc/mysql/mariadb.conf.d/50-server.cnf && \
+mariadb-server
+
+RUN printf '[mysqld]\nport = 3306\nbind-address = 0.0.0.0\n' >> /etc/mysql/mariadb.conf.d/50-server.cnf && \
 /etc/init.d/mysql restart && \
 mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'homestead'@'%' IDENTIFIED BY 'secret' WITH GRANT OPTION;" && \
 mysql -u root -e "CREATE DATABASE homestead;"
