@@ -8,7 +8,7 @@ Now this works in most cases, however I had the unique problem that my kernel wa
 First of all you will need to install docker or docker-ce for Linux<br>
 https://docs.docker.com/install/
 
-For Ubuntu 18.10 use the Test branch if Stable does not exist yet.
+For Ubuntu 19.04 you might need to use the Test branch if Stable does not exist yet.
 
 **Default mariadb info**<br>
 To connect from inside the container<br>
